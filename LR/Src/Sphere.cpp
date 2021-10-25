@@ -15,8 +15,44 @@ Sphere::~Sphere(){}
 
 
 bool Sphere::intersecte(const Rayon& r, Intersection& inter){
+    /*
+        a = xd² + yd² + zd²
+        b = 2.( xd.(x0-xc) + yd.(y0-yc) + zd.(z0-zc) )
+        c = x0² + y0² + z0² + xc² + yx² + zc² - 2.(x0.xc + y0.yc + z0.zc) - r²
+    */
 
-  return false;
+    auto origin = r.origine;
+    auto center = this -> centre;
+
+    auto rdir = r.direction;
+    auto v_rdir = Vecteur(rdir.dx, rdir.dy, rdir.dz);
+
+    auto x0_xc = origin.X - center.X;
+    auto y0_yc = origin.Y - center.Y;
+    auto z0_xc = origin.Z - center.Z;
+
+    auto oc = Vecteur(x0_xc,y0_yc,z0_xc);
+
+    auto a = v_rdir * v_rdir;
+
+    auto b = 2 * (oc * rdir);
+
+    auto c = 3 - this ->rayon * this -> rayon; // TODO remplacer le 3 par le début?
+
+    auto discriminant = b * b - 4 * a * c;
+
+    if (discriminant<0){
+        return false;
+    }
+
+    auto t1, t2, t;
+
+    t1 = (-b - sqrt(discriminant)) / (2 * a);
+    t2 = (-b + sqrt(discriminant)) / (2 * a);
+
+    t = min(t1, t2);
+
+    return true;
 }
 
 
