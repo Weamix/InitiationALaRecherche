@@ -17,7 +17,7 @@ Cours 1 : https://www-lisic.univ-littoral.fr/~renaud/Cours/M1/IntroRecherche/Ini
 
 PROF 1
 
-EPSILON 0.OO1
+EPSILON 0.001
 
 and adding "Validité : si t < 0, intersection non valide (derrière l'origine du rayon)"
 
