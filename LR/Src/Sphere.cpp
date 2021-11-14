@@ -87,8 +87,66 @@ bool Sphere::intersecte(const Rayon& r, Intersection& inter){
 
 
 bool Sphere::coupe(const Rayon& r){
+    /*
+        a = xd² + yd² + zd²
+        b = 2.( xd.(x0-xc) + yd.(y0-yc) + zd.(z0-zc) )
+        c = x0² + y0² + z0² + xc² + yc² + zc² - 2.(x0.xc + y0.yc + z0.zc) - r²
+    */
 
-  return false;
+    // common variables
+    auto origin = r.origine;
+    auto center = this -> centre;
+    auto rdir = r.direction;
+
+    // a variables
+    auto xd2 = rdir.dx * rdir.dx;
+    auto yd2 = rdir.dy * rdir.dy;
+    auto zd2 = rdir.dz * rdir.dz;
+
+    auto a = xd2 + yd2 + zd2;
+
+    // b variables
+    auto x0_xc = origin.X - center.X;
+    auto y0_yc = origin.Y - center.Y;
+    auto z0_zc = origin.Z - center.Z;
+
+    auto b = 2 * (rdir.dx * (x0_xc) + rdir.dy * (y0_yc) + rdir.dz * (z0_zc));
+
+    // c variables
+    auto x02 = origin.X * origin.X;
+    auto y02 = origin.Y * origin.Y;
+    auto z02 = origin.Z * origin.Z;
+    auto xc2 = center.X * center.X;
+    auto yc2 = center.Y * center.Y;
+    auto zc2 = center.Z * center.Z;
+
+    auto c = x02 + y02 + z02 + xc2 + yc2 + zc2  - 2 * (origin.X * center.X + origin.Y * center.Y + origin.Z * center.Z )  - this ->rayon * this -> rayon;
+
+    /*
+     * la fonction intersecte renvoie false si pas d'intersection;
+     * et true + les coordonnées du point d'intersection (classe Intersection) si une intersection est trouvée
+     * Voir diaporama 48 : https://www-lisic.univ-littoral.fr/~renaud/Cours/M1/IntroRecherche/InitRechercheSeance1V1.1.pdf
+     */
+
+    auto discriminant = b * b - 4 * a * c;
+
+    if (discriminant < SP_EPSILON){
+        return false;
+    }
+
+    double t1, t2;
+    float t;
+
+    t1 = (-b - sqrt(discriminant)) / (2 * a);
+    t2 = (-b + sqrt(discriminant)) / (2 * a);
+
+    t = min(t1, t2);
+    // Validité : si t < 0, intersection non valide (derrière l'origine du rayon)
+    if (t < 0 ) {
+        return false;
+    }
+
+    return true;
 }
 
 ostream& operator<<(ostream & sortie, Sphere & s){

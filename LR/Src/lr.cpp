@@ -9,7 +9,7 @@ using namespace std;
 #include "Camera.hpp"
 
 // profondeur de la récursion pour le lancer de rayons
-#define PROF 1
+#define PROF 2
 
 int main(int argc, char *argv[]){
 
