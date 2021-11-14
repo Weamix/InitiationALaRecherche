@@ -1,6 +1,8 @@
 #include "Sphere.hpp"
 #include <cmath>
 
+// profondeur de la récursion pour le lancer de rayons
+#define SP_EPSILON 0.0001
 
 Sphere::Sphere() : Objet(){
   rayon = 1.0;
@@ -58,7 +60,7 @@ bool Sphere::intersecte(const Rayon& r, Intersection& inter){
 
     auto discriminant = b * b - 4 * a * c;
 
-    if (discriminant<0){
+    if (discriminant < SP_EPSILON){
         return false;
     }
 
@@ -69,6 +71,10 @@ bool Sphere::intersecte(const Rayon& r, Intersection& inter){
     t2 = (-b + sqrt(discriminant)) / (2 * a);
 
     t = min(t1, t2);
+    // Validité : si t < 0, intersection non valide (derrière l'origine du rayon)
+    if (t < 0 ) {
+        return false;
+    }
 
     auto x = r.origine.X + t * r.direction.dx;
     auto y = r.origine.Y + t * r.direction.dy;
