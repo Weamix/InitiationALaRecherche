@@ -124,9 +124,7 @@ bool Sphere::coupe(const Rayon& r){
     auto c = x02 + y02 + z02 + xc2 + yc2 + zc2  - 2 * (origin.X * center.X + origin.Y * center.Y + origin.Z * center.Z )  - this ->rayon * this -> rayon;
 
     /*
-     * la fonction intersecte renvoie false si pas d'intersection;
-     * et true + les coordonnées du point d'intersection (classe Intersection) si une intersection est trouvée
-     * Voir diaporama 48 : https://www-lisic.univ-littoral.fr/~renaud/Cours/M1/IntroRecherche/InitRechercheSeance1V1.1.pdf
+     * en vous inspirant de ce que vous avez développé pour la méthode intersecte, en vous rappelant que ici, aucun point d’intersection ne doit être calculé.
      */
 
     auto discriminant = b * b - 4 * a * c;
