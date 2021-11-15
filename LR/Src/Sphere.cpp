@@ -1,7 +1,8 @@
 #include "Sphere.hpp"
 #include <cmath>
 
-// profondeur de la récursion pour le lancer de rayons
+// constante réelle très petite pour éviter :
+// une auto-intersection avec la sphère de départ du rayon, qui conduit a une erreur d'évaluation de l’intensité lumineuse portée par le rayon
 #define SP_EPSILON 0.0001
 
 Sphere::Sphere() : Objet(){
@@ -76,9 +77,9 @@ bool Sphere::intersecte(const Rayon& r, Intersection& inter){
         return false;
     }
 
-    auto x = r.origine.X + t * r.direction.dx;
-    auto y = r.origine.Y + t * r.direction.dy;
-    auto z = r.origine.Z + t * r.direction.dz;
+    auto x = origin.X + t * rdir.dx;
+    auto y = origin.Y + t * rdir.dy;
+    auto z = origin.Z + t * rdir.dz;
 
     inter = Intersection(Point(x, y, z), this, t);
 
