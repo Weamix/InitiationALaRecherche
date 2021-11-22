@@ -94,6 +94,15 @@ public:
    * @param v le vecteur à afficher
    * @return le flot modifié
    */  friend ostream& operator<<(ostream & sortie, const Vecteur & v);
+
+    /** Modifie la valeur des coordonnées du vecteur.
+
+    @param x coordonnée en <CODE>X</CODE> du vecteur à modifier
+    @param y coordonnée en <CODE>Y</CODE> du vecteur à modifier
+    @param z coordonnée en <CODE>Z</CODE> du vecteur à modifier
+    */
+    void set(const double &x, const double &y, const double &z);
+
 };
 
 

@@ -51,4 +51,12 @@ ostream& operator<<(ostream & sortie, const Vecteur & v){
   return sortie;
 }
 
+void Vecteur::set(const double &x, const double &y, const double &z){
+    Vecteur::dx = x;
+    Vecteur::dy = y;
+    Vecteur::dz = z;
+}
+
+
+
 

@@ -3,6 +3,7 @@
 #include "Scene.hpp"
 #include "Sphere.hpp"
 #include "Plan.hpp"
+#include "Triangle.hpp"
 
 Scene::Scene(){
   ambiante.intensite.set(0.2, 0.2, 0.2);
@@ -69,6 +70,16 @@ bool Scene::charger(string filename){
       float r, v, b;
       in >> r >> v >> b;
       ambiante.intensite.set(r, v, b);
+    }
+
+    if(s=="tri"){ // charger un triangle
+        double x1, y1, z1, x2, y2, z2, x3, y3, z3;
+        in >> x1 >> y1 >> z1 >> x2 >> y2 >> z2 >> x3 >> y3 >> z3;
+        Point tab[3];
+        tab[0] = Point(x1,y1,z1);
+        tab[1] = Point(x2,y2,z2);
+        tab[2] = Point(x3,y3,z3);
+        ajouter(new Triangle(tab,curMat));
     }
 
     in >> s;
