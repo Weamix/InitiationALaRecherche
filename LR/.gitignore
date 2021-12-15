@@ -1,3 +1,9 @@
-/html/
-/CMakeFiles/
-LR/CMakeFiles
+html/
+.cmake/
+CMakeCache.txt
+CMakeFiles/
+Makefile
+lr
+cmake_install.cmake
+.idea/
+.DS_Store
