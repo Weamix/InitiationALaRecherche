@@ -74,7 +74,7 @@ bool Triangle::intersecte(const Rayon& r, Intersection& inter){
     if ((produitVectoriel(vAC, vQC) * this->n) >= 0)
         return false;
 
-    inter = Intersection(q, this, t);
+    inter = Intersection(Q, this, t);
 
     return true;
 }
