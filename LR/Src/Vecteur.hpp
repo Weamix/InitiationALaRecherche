@@ -109,7 +109,7 @@ public:
      * @param v : deuxieme vecteur
      * @return le produict vectoriel entre u et v
      */
-    Vecteur produitVectoriel(Vecteur &u, Vecteur &v);
+    static Vecteur produitVectoriel(Vecteur &u, Vecteur &v);
 
 };
 
