@@ -61,17 +61,17 @@ bool Triangle::intersecte(const Rayon& r, Intersection& inter){
 
     auto vBA = Vecteur(B,A);
     auto vQA = Vecteur(Q,A);
-    if ((produitVectoriel(vBA, vQA) * this->n) >= 0)
+    if ((Vecteur::produitVectoriel(vBA, vQA) * this->n) >= 0)
         return false;
 
     auto vCB = Vecteur(C,B);
     auto vQB = Vecteur(Q,B);
-    if ((produitVectoriel(vCB, vQB) * this->n) >= 0)
+    if ((Vecteur::produitVectoriel(vCB, vQB) * this->n) >= 0)
         return false;
 
     auto vAC = Vecteur(A,C);
     auto vQC = Vecteur(Q,C);
-    if ((produitVectoriel(vAC, vQC) * this->n) >= 0)
+    if ((Vecteur::produitVectoriel(vAC, vQC) * this->n) >= 0)
         return false;
 
     inter = Intersection(Q, this, t);
