@@ -103,6 +103,14 @@ public:
     */
     void set(const double &x, const double &y, const double &z);
 
+    /**
+     * Produit vectoriel entre 2 vecteurs
+     * @param u : premier vecteur
+     * @param v : deuxieme vecteur
+     * @return le produict vectoriel entre u et v
+     */
+    Vecteur produitVectoriel(Vecteur &u, Vecteur &v);
+
 };
 
 
