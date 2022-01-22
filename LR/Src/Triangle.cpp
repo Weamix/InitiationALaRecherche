@@ -53,8 +53,6 @@ bool Triangle::intersecte(const Rayon& r, Intersection& inter){
     auto P = Vecteur(origin.X, origin.Y, origin.Z);
     auto A = this->s[0];
     auto d = this->n * Vecteur(A.X, A.Y, A.Z);
-    // manque un - ?
-    //auto D = Vecteur(direction.X, direction.Y, direction.Z);
 
     auto nD = this->n * direction;
     if (nD == 0)
@@ -69,12 +67,6 @@ bool Triangle::intersecte(const Rayon& r, Intersection& inter){
     auto Q = Point(origin.X + t * direction.dx,
                    origin.Y + t * direction.dy,
                    origin.Z + t * direction.dz);
-
-    /*
-     * v(B,A)*v(Q,A) * n > 0
-     * v(C,B)*v(Q,B) * n > 0
-     * v(A,C)*v(Q,C) * n > 0
-     */
 
     auto vAB= Vecteur(A,B);
     auto vAQ = Vecteur(A,Q);
@@ -97,7 +89,43 @@ bool Triangle::intersecte(const Rayon& r, Intersection& inter){
 }
 
 bool Triangle::coupe(const Rayon& r){
-  return false;
+    auto origin = r.origine;
+    auto direction = r.direction;G
+
+    auto P = Vecteur(origin.X, origin.Y, origin.Z);
+    auto A = this->s[0];
+    auto d = this->n * Vecteur(A.X, A.Y, A.Z);
+
+    auto nD = this->n * direction;
+    if (nD == 0)
+        return false;
+
+    auto t = (d - this->n * P) / nD;
+    if (t < TRI_EPSILON)
+        return false;
+
+    auto B= this->s[1];
+    auto C = this->s[2];
+    auto Q = Point(origin.X + t * direction.dx,
+                   origin.Y + t * direction.dy,
+                   origin.Z + t * direction.dz);
+
+    auto vAB= Vecteur(A,B);
+    auto vAQ = Vecteur(A,Q);
+    if ((Vecteur::produitVectoriel(vAB, vAQ) * this->n) <= 0)
+        return false;
+
+    auto vBC = Vecteur(B,C);
+    auto vBQ = Vecteur(B,Q);
+    if ((Vecteur::produitVectoriel(vBC, vBQ) * this->n) <= 0)
+        return false;
+
+    auto vCA = Vecteur(C,A);
+    auto vCQ = Vecteur(C,Q);
+    if ((Vecteur::produitVectoriel(vCA, vCQ) * this->n) <= 0)
+        return false;
+
+    return true;
 }
 #endif
 
