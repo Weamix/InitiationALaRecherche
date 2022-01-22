@@ -39,7 +39,7 @@ PROF 2 :
 
 ## TP2  : https://www-lisic.univ-littoral.fr/~renaud/Cours/M1/IntroRecherche/tpInitRecherche02.pdf
 
-### Exercice 3 intersecte withtout coupe
+### Exercice 3 intersecte without coupe
 ![image](https://user-images.githubusercontent.com/25066854/150645420-08610dc0-a75f-4c4d-a55c-5a6218f05c82.png)
 
 ### Exercice 3 intersecte with coupe
