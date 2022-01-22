@@ -1,5 +1,7 @@
 # Run project :
 
+cmake .
+
 make
 
 ./lr Scenes/scene01.txt
@@ -35,3 +37,4 @@ PROF 2 :
 
 ![image](https://user-images.githubusercontent.com/25066854/141699464-8113c661-c63e-42c2-9637-5c52dc6a4a29.png)
 
+## TP2  : https://www-lisic.univ-littoral.fr/~renaud/Cours/M1/IntroRecherche/tpInitRecherche01.pdf
