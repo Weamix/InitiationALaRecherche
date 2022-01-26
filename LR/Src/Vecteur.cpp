@@ -57,7 +57,7 @@ void Vecteur::set(const double &x, const double &y, const double &z){
     Vecteur::dz = z;
 }
 
-Vecteur Vecteur::produitVectoriel(Vecteur &u, Vecteur &v){
+Vecteur Vecteur::produitVectoriel(const Vecteur &u, const Vecteur &v){
     return Vecteur (
             u.dy * v.dz - u.dz*v.dy,
             u.dz * v.dx - u.dx*v.dz,
